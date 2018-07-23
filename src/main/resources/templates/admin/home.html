@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="fragments/header :: header-css"/>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+	<form th:action="@{/logout}" method="get">
+			<button class="btn btn-md btn-danger btn-block" name="registration"
+				type="Submit">Logout</button>
+		</form>
+
+	   <form th:action="@{/admin/form}" method="get">
+		<button class="btn btn-md btn-danger btn-block" name="registration"
+				type="Submit">форма</button>
+	   </form>
+
+	<form th:action="@{/admin/processRequestChangePass}" method="get">
+		<button class="btn btn-md btn-danger btn-block" name="registration"
+				type="Submit">Cмена пароля</button>
+	</form>
+
+
+	  <h2>3. Посетите <a th:href="@{/admin/form}">Открытую страницу(доступна всем)</a></h2>
+
+
+
+	<div class="panel-group" style="margin-top:40px">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<span th:utext="${userName}"></span>
+				</div>
+				<div class="panel-body">
+					<img th:src="@{/images/beer.jpg}" class="img-responsive center-block" width="400" height="400" alt="Beer" /> 
+				</div>
+				<p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>
