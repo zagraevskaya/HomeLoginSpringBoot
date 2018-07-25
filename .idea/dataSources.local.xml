@@ -17,7 +17,7 @@
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <user-name>root</user-name>
-      <introspection-schemas>*:test</introspection-schemas>
+      <introspection-schemas>*:accord,test</introspection-schemas>
     </data-source>
     <data-source name="db_hiberhate.xml/Hibernate" uuid="aa4145a7-a4ed-43bc-adfb-30e52d0718b0">
       <database-info product="MySQL" version="5.7.12-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
