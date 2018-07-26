@@ -1,8 +1,9 @@
 package com.example.controller;
 
 import com.example.model.ParamUsersEntity;
-import com.example.repository.ParamUserRepository;
-import com.example.service.ParamService;
+import com.example.model.WuRequest;
+import com.example.service.ParamServiceImpl;
+import com.example.service.WuRequestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.model.User;
-import com.example.service.UserService;
+import com.example.service.UserServiceImpl;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -21,20 +22,28 @@ import java.util.List;
 @Controller
 public class RequestController {
     @Autowired
-    private ParamService paramService;
+    private ParamServiceImpl paramServiceImpl;
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
+    @Autowired
+    private WuRequestServiceImpl wuRequestService;
+
 
     @RequestMapping(value="/admin/processRequestChangePass", method = RequestMethod.GET)
     public ModelAndView processRequestChangePass(){
         ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userServiceImpl.findUserByEmail(auth.getName());
         modelAndView.addObject("user", user);
+
+        WuRequest wuRequest=new WuRequest();
+        modelAndView.addObject("wu_request",wuRequest);
+
+
         modelAndView.setViewName("admin/processRequestChangePass");
 
-        List<ParamUsersEntity> paramList=paramService.findByEmail(user.getEmail());
+        List<ParamUsersEntity> paramList= paramServiceImpl.findByEmail(user.getEmail());
 
         for (ParamUsersEntity paramUsersEntity: paramList ){
             String nameAtribbute= paramUsersEntity.getNameParam();
@@ -56,20 +65,15 @@ public class RequestController {
 
 
     @RequestMapping(value = "/admin/processRequestChangePass", method = RequestMethod.POST)
-    public ModelAndView createNewRequestChagePass(@Valid User user, BindingResult bindingResult) {
+    public ModelAndView createNewRequestChagePass(@Valid WuRequest wuRequest, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        User userExists = userService.findUserByEmail(user.getEmail());
-        if (userExists != null) {
-            bindingResult
-                    .rejectValue("email", "error.user",
-                            "There is already a user registered with the email provided");
-        }
+
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("/admin/processRequestChangePass");
         } else {
-            userService.saveUser(user);
-            modelAndView.addObject("successMessage", "User has been registered successfully");
-            modelAndView.addObject("user", new User());
+            wuRequestService.saveWuRequest(wuRequest);
+            modelAndView.addObject("successMessage", "Заявка отправлена успешо");
+            modelAndView.addObject("wuRequest", new WuRequest());
             modelAndView.setViewName("admin/processRequestChangePass");
 
         }

@@ -19,6 +19,8 @@
                 <br/>
                 <h2>Запит на зміну паролю</h2>
 
+
+
                <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
                     <input type="email" th:value="${Attribute_1}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -30,6 +32,14 @@
                     <input type="text" th:value="${Attribute_2}" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email">
                     <small id="emailHelp2" class="form-text text-muted">We'll never share your email with anyone else.</small>
                   </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+
+                        <input type="text" th:field="*{lastName}"
+                               placeholder="amount" class="form-control" />
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <div class="col-sm-12">
@@ -54,44 +64,11 @@
                 </div>
 
 
+
                 <div class="form-group">
                     <div class="col-sm-12">
                         <input type="text" th:value="${Attribute_6}"  th:utext="${Attribute_6}" placeholder="Attribute_2"
                                class="form-control" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-                               class="validation-message"></label>
-                        <input type="text" th:field="*{name}" placeholder="Name"
-                               class="form-control" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
-                                  class="validation-message"></label>
-                        <input type="text" th:field="*{lastName}"
-                               placeholder="Last Name" class="form-control" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text" th:field="*{email}" placeholder="Email"
-                               class="form-control" /> <label
-                            th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                            class="validation-message"></label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="password" th:field="*{password}"
-                               placeholder="Password" class="form-control" /> <label
-                            th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                            class="validation-message"></label>
                     </div>
                 </div>
 

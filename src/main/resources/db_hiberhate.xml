@@ -6,9 +6,11 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://localhost:3306/test</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <mapping class="com.example.model.ParamUsersEntity"/>
+      <mapping class="com.example.model.ParamUsersEntity"/>
 
       <mapping class="com.example.model.ParamUsersEntity"/>
-    <!-- <property name="hbm2ddl.auto">update</property> -->
+    <mapping class="com.example.model.WuRequest"/>
+      <mapping class="com.example.model.WuRequestEntity"/>
+      <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>

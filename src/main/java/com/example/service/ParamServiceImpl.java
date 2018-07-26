@@ -1,22 +1,9 @@
 package com.example.service;
 
 import com.example.model.ParamUsersEntity;
-import com.example.repository.ParamUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("paramService")
-public class ParamServiceImpl implements ParamService {
-    @Qualifier("paramUserRepository")
-    @Autowired
-    private ParamUserRepository paramUserRepository;
-
-
-    @Override
-    public List<ParamUsersEntity> findByEmail(String email) {
-        return paramUserRepository.findByEmail(email);
-    }
+public interface ParamServiceImpl {
+    List<ParamUsersEntity> findByEmail(String email);
 }

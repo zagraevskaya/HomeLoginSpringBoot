@@ -2,9 +2,6 @@ package com.example.controller;
 
 import javax.validation.Valid;
 
-import com.example.model.ParamUsersEntity;
-import com.example.repository.ParamUserRepository;
-import com.example.service.ParamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,15 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.model.User;
-import com.example.service.UserService;
-
-import java.util.List;
+import com.example.service.UserServiceImpl;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userServiceImpl;
 
 	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
 	public ModelAndView login(){
@@ -45,7 +40,7 @@ public class LoginController {
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
-		User userExists = userService.findUserByEmail(user.getEmail());
+		User userExists = userServiceImpl.findUserByEmail(user.getEmail());
 		if (userExists != null) {
 			bindingResult
 					.rejectValue("email", "error.user",
@@ -54,7 +49,7 @@ public class LoginController {
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("registration");
 		} else {
-			userService.saveUser(user);
+			userServiceImpl.saveUser(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());
 			modelAndView.setViewName("registration");
@@ -69,7 +64,7 @@ public class LoginController {
 	public ModelAndView home(){
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUserByEmail(auth.getName());
+		User user = userServiceImpl.findUserByEmail(auth.getName());
 		modelAndView.addObject("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
 		modelAndView.setViewName("admin/home");
@@ -81,7 +76,7 @@ public class LoginController {
 	public ModelAndView form(){
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUserByEmail(auth.getName());
+		User user = userServiceImpl.findUserByEmail(auth.getName());
 		modelAndView.addObject("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
 		modelAndView.setViewName("admin/form");
