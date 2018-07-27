@@ -2,13 +2,32 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="resources:db_hiberhate.xml/Hibernate" uuid="749cc765-9592-45d8-9d44-8eae69a4dde3">
-      <database-info product="MySQL" version="5.7.22-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
+      <database-info product="MySQL" version="5.7.12-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <user-name>root</user-name>
-      <introspection-schemas>*:test</introspection-schemas>
+      <introspection-schemas>*:*</introspection-schemas>
+    </data-source>
+    <data-source name="db_hiberhate.xml/Hibernate" uuid="9c1a076a-af4c-4e42-ae9b-6b852ebcf189">
+      <database-info product="MySQL" version="5.7.12-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <user-name>root</user-name>
+      <introspection-schemas>*:accord</introspection-schemas>
+    </data-source>
+    <data-source name="accord@localhost" uuid="3a39eeb3-7833-4796-804d-e3c9fa233b9b">
+      <database-info product="MySQL" version="5.7.12-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <introspection-schemas>*:accord</introspection-schemas>
     </data-source>
   </component>
 </project>

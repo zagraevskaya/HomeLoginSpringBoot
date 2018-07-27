@@ -2,8 +2,9 @@ package com.example.controller;
 
 import com.example.model.ParamUsersEntity;
 import com.example.model.WuRequest;
-import com.example.service.ParamServiceImpl;
-import com.example.service.WuRequestServiceImpl;
+import com.example.model.User;
+
+import com.example.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.model.User;
-import com.example.service.UserServiceImpl;
+
 
 import javax.validation.Valid;
 import java.util.List;
@@ -22,11 +22,11 @@ import java.util.List;
 @Controller
 public class RequestController {
     @Autowired
-    private ParamServiceImpl paramServiceImpl;
+    private ParamService paramServiceImpl;
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    private UserService userServiceImpl;
     @Autowired
-    private WuRequestServiceImpl wuRequestService;
+    private WuRequestService wuRequestService;
 
 
     @RequestMapping(value="/admin/processRequestChangePass", method = RequestMethod.GET)
@@ -38,7 +38,7 @@ public class RequestController {
         modelAndView.addObject("user", user);
 
         WuRequest wuRequest=new WuRequest();
-        modelAndView.addObject("wu_request",wuRequest);
+        modelAndView.addObject("wurequest",wuRequest);
 
 
         modelAndView.setViewName("admin/processRequestChangePass");
@@ -73,7 +73,7 @@ public class RequestController {
         } else {
             wuRequestService.saveWuRequest(wuRequest);
             modelAndView.addObject("successMessage", "Заявка отправлена успешо");
-            modelAndView.addObject("wuRequest", new WuRequest());
+            modelAndView.addObject("wuRequestEntity", new WuRequest());
             modelAndView.setViewName("admin/processRequestChangePass");
 
         }
