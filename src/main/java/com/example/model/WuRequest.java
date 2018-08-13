@@ -2,6 +2,11 @@ package com.example.model;
 
 import javax.persistence.*;
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
+
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "wu_request")
@@ -12,14 +17,21 @@ public class WuRequest {
     @Column(name = "id")
     private int id;
 
-
     @Column(name = "amount")
-    private Double amount;
+    @NotNull(message = " *Необхідно ввести суму")
+    @Pattern(regexp = "^[0-9]*\\.[0-9]{2}", message=" *Необхідно ввести суму у форматі число з роздільником крапка (Наприклад - 15.00)")
+    private String amount;
 
     @Column(name = "currency")
+    @NotNull
+    @NotNull
+    @Pattern(regexp="^(?=\\s*\\S).*$", message=" *Необхідно вибрати валюту переказу")
     private String currency;
+    
     @Column(name = "amount_send")
-    private Double amountSend;
+    @NotNull(message = " *Необхідно ввести суму")
+    @Pattern(regexp = "^[0-9]*\\.[0-9]{2}", message=" *Необхідно ввести суму у форматі число з роздільником крапка (Наприклад - 15.00)")
+    private String amountSend;
 
     @Column(name = "cooment")
     private String cooment;
@@ -40,11 +52,11 @@ public class WuRequest {
     }
 
 
-    public Double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -58,11 +70,11 @@ public class WuRequest {
     }
 
 
-    public Double getAmountSend() {
+    public String getAmountSend() {
         return amountSend;
     }
 
-    public void setAmountSend(Double amountSend) {
+    public void setAmountSend(String amountSend) {
         this.amountSend = amountSend;
     }
 

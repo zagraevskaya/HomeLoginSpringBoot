@@ -9,7 +9,8 @@
       <mapping class="com.example.model.ParamUsersEntity"/>
 
       <mapping class="com.example.model.ParamUsersEntity"/>
-      <mapping class="com.example.model.WuRequestEntity"/>
+      <mapping class="com.example.model.WuRequest"/>
+      <mapping class="com.example.model.AcWuDictUserTermDiv"/>
       <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>

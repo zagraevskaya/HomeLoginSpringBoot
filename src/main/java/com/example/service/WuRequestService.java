@@ -20,7 +20,7 @@ public class WuRequestService implements WuRequestServiceImpl {
     }
 
     @Override
-    public void saveWuRequest(WuRequest wuRequestEntity) {
-          wuRequestRepository.save(wuRequestEntity);
+    public void saveWuRequest(WuRequest wuRequest) {
+          wuRequestRepository.save(wuRequest);
     }
 }
