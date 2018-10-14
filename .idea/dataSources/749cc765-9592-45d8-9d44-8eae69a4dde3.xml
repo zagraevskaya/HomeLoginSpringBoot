@@ -1756,7 +1756,7 @@
  | events_stages_current                                | VIEW       |
  | events_stages_history                                | VIEW       |
  ...
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="551" parent="8" name="diagnostics">
@@ -1840,7 +1840,7 @@
  mysql&gt; CALL sys.diagnostics(120, 30, &apos;current&apos;);
  ...
  mysql&gt; NOTEE;
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="552" parent="8" name="execute_prepared_stmt">
@@ -1877,7 +1877,7 @@
  1 row in set (0.00 sec)
  
  Query OK, 0 rows affected (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="553" parent="8" name="extract_schema_from_file_name">
@@ -1911,7 +1911,7 @@
  | employees                                                                  |
  +----------------------------------------------------------------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="554" parent="8" name="extract_table_from_file_name">
@@ -1941,7 +1941,7 @@
  | employee                                                                  |
  +---------------------------------------------------------------------------+
  1 row in set (0.02 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="555" parent="8" name="format_bytes">
@@ -1984,7 +1984,7 @@
  | 22.40 MiB |
  +-----------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="556" parent="8" name="format_path">
@@ -2023,7 +2023,7 @@
  | @@datadir/mysql/proc.MYD |
  +--------------------------+
  1 row in set (0.03 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="557" parent="8" name="format_statement">
@@ -2063,7 +2063,7 @@
  | CREATE SQL SECURITY INVOKER VI ... LIKE ? ORDER BY `timer_start`  |
  +-------------------------------------------------------------------+
  5 rows in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="558" parent="8" name="format_time">
@@ -2110,7 +2110,7 @@
  | 34.23 ns           |
  +--------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="559" parent="8" name="list_add">
@@ -2154,7 +2154,7 @@
  +-----------------------------------------------------------------------------------------------+
  1 row in set (0.00 sec)
  
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="560" parent="8" name="list_drop">
@@ -2198,7 +2198,7 @@
  +----------------------------------------------------------------------------+
  1 row in set (0.00 sec)
  
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="561" parent="8" name="ps_is_account_enabled">
@@ -2228,7 +2228,7 @@
  | YES                                            |
  +------------------------------------------------+
  1 row in set (0.01 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="562" parent="8" name="ps_is_consumer_enabled">
@@ -2256,7 +2256,7 @@
  | NO                                                  |
  +-----------------------------------------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="563" parent="8" name="ps_is_instrument_default_enabled">
@@ -2283,7 +2283,7 @@
  | YES                                                          |
  +--------------------------------------------------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="564" parent="8" name="ps_is_instrument_default_timed">
@@ -2310,7 +2310,7 @@
  | YES                                                        |
  +------------------------------------------------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="565" parent="8" name="ps_is_thread_instrumented">
@@ -2336,7 +2336,7 @@
  +------------------------------------------------+
  | YES                                            |
  +------------------------------------------------+
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="566" parent="8" name="ps_setup_disable_background_threads">
@@ -2358,7 +2358,7 @@
  | Disabled 18 background threads |
  +--------------------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="567" parent="8" name="ps_setup_disable_consumer">
@@ -2394,7 +2394,7 @@
  | Disabled 3 consumers   |
  +------------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="568" parent="8" name="ps_setup_disable_instrument">
@@ -2440,7 +2440,7 @@
  | Disabled 547 instruments |
  +--------------------------+
  1 row in set (0.01 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="569" parent="8" name="ps_setup_disable_thread">
@@ -2474,7 +2474,7 @@
  | Disabled 1 thread |
  +-------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="570" parent="8" name="ps_setup_enable_background_threads">
@@ -2496,7 +2496,7 @@
  | Enabled 18 background threads |
  +-------------------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="571" parent="8" name="ps_setup_enable_consumer">
@@ -2536,7 +2536,7 @@
  1 row in set (0.00 sec)
  
  Query OK, 0 rows affected (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="572" parent="8" name="ps_setup_enable_instrument">
@@ -2588,7 +2588,7 @@
  1 row in set (0.01 sec)
  
  Query OK, 0 rows affected (0.01 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="573" parent="8" name="ps_setup_enable_thread">
@@ -2622,7 +2622,7 @@
  | Enabled 1 thread |
  +------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="574" parent="8" name="ps_setup_reload_saved">
@@ -2655,7 +2655,7 @@
  
  mysql&gt; CALL sys.ps_setup_reload_saved();
  Query OK, 0 rows affected (0.32 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="575" parent="8" name="ps_setup_reset_to_default">
@@ -2688,7 +2688,7 @@
  
  mysql&gt; CALL sys.ps_setup_reset_to_default(false)G
  Query OK, 0 rows affected (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="576" parent="8" name="ps_setup_save">
@@ -2722,7 +2722,7 @@
  
  mysql&gt; CALL sys.ps_setup_reload_saved();
  Query OK, 0 rows affected (0.32 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="577" parent="8" name="ps_setup_show_disabled">
@@ -2809,7 +2809,7 @@
  547 rows in set (0.00 sec)
  
  Query OK, 0 rows affected (0.01 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="578" parent="8" name="ps_setup_show_disabled_consumers">
@@ -2835,7 +2835,7 @@
  | statements_digest         |
  +---------------------------+
  4 rows in set (0.05 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="579" parent="8" name="ps_setup_show_disabled_instruments">
@@ -2851,7 +2851,7 @@
  Example
  
  mysql&gt; CALL sys.ps_setup_show_disabled_instruments();
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="580" parent="8" name="ps_setup_show_enabled">
@@ -2929,7 +2929,7 @@
  210 rows in set (0.08 sec)
  
  Query OK, 0 rows affected (0.89 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="581" parent="8" name="ps_setup_show_enabled_consumers">
@@ -2955,7 +2955,7 @@
  | statements_digest         |
  +---------------------------+
  4 rows in set (0.05 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="582" parent="8" name="ps_setup_show_enabled_instruments">
@@ -2971,7 +2971,7 @@
  Example
  
  mysql&gt; CALL sys.ps_setup_show_enabled_instruments();
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="583" parent="8" name="ps_statement_avg_latency_histogram">
@@ -3017,7 +3017,7 @@
  (576 - 615ms)  1   | .
  
  Total Statements: 350; Buckets: 16; Bucket Size: 38 ms;
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="584" parent="8" name="ps_thread_account">
@@ -3051,7 +3051,7 @@
  | msandbox@localhost        |
  +---------------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="585" parent="8" name="ps_thread_id">
@@ -3083,7 +3083,7 @@
  |                                98 |
  +-----------------------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="586" parent="8" name="ps_thread_stack">
@@ -3112,7 +3112,7 @@
  [{&quot;nesting_event_id&quot;: &quot;0&quot;, &quot;event_id&quot;: &quot;10&quot;, &quot;timer_wait&quot;: 256.35, &quot;event_info&quot;: 
  &quot;sql/select&quot;, &quot;wait_info&quot;: &quot;select @@version_comment limit 1\nerrors: 0\nwarnings: 0\nlock time:
  ...
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="587" parent="8" name="ps_thread_trx_info">
@@ -3218,7 +3218,7 @@
  }
  ]
  1 row in set (0.03 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="588" parent="8" name="ps_trace_statement_digest">
@@ -3330,7 +3330,7 @@
  1 row in set (9.27 sec)
  
  Query OK, 0 rows affected (9.28 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="589" parent="8" name="ps_trace_thread">
@@ -3408,7 +3408,7 @@
  | Enabled 1 thread |
  +------------------+
  1 row in set (60.32 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="590" parent="8" name="ps_truncate_all_tables">
@@ -3434,7 +3434,7 @@
  1 row in set (0.10 sec)
  
  Query OK, 0 rows affected (0.10 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="591" parent="8" name="statement_performance_analyzer">
@@ -3494,7 +3494,7 @@
  
  in_views (SET (&apos;with_runtimes_in_95th_percentile&apos;, &apos;analysis&apos;, &apos;with_errors_or_warnings&apos;,
  &apos;with_full_table_scans&apos;, &apos;with_sorting&apos;, &apos;with_temp_tables&apos;, &apos;custom&apos;))
- Which views to include:  * with_runtimes_in_95th_percentile  Based on the sys.statements_with_runtimes_in_95th_percentile view * analysis                          Based on the sys.statement_analysis view * with_errors_or_warnings           Based on the sys.statements_with_errors_or_warnings view * with_full_table_scans             Based on the sys.statements_with_full_table_scans view * with_sorting                      Based on the sys.statements_with_sorting view * with_temp_tables                  Based on the sys.statements_with_temp_tables view * custom                            Use a custom view. This view must be specified in @sys.statement_performance_analyzer.view to an existing view or a query  Default is to include all except &apos;custom&apos;.   Configuration Options  sys.statement_performance_analyzer.limit The maximum number of rows to include for the views that does not have a built-in limit (e.g. the 95th percentile view). If not set the limit is 100.  sys.statement_performance_analyzer.view Used together with the &apos;custom&apos; view. If the value contains a space, it is considered a query, otherwise it must be an existing view querying the performance_schema.events_statements_summary_by_digest table. There cannot be any limit clause including in the query or view definition if @sys.statement_performance_analyzer.limit &gt; 0. If specifying a view, use the same format as for in_table.  sys.debug Whether to provide debugging output. Default is &apos;OFF&apos;. Set to &apos;ON&apos; to include.   Example  To create a report with the queries in the 95th percentile since last truncate of performance_schema.events_statements_summary_by_digest and the delta for a 1 minute period:  1. Create a temporary table to store the initial snapshot. 2. Create the initial snapshot. 3. Save the initial snapshot in the temporary table. 4. Wait one minute. 5. Create a new snapshot. 6. Perform analyzis based on the new snapshot. 7. Perform analyzis based on the delta between the initial and new snapshots.  mysql&gt; CALL sys.statement_performance_analyzer(&apos;create_tmp&apos;, &apos;mydb.tmp_digests_ini&apos;, NULL); Query OK, 0 rows affected (0.08 sec)  mysql&gt; CALL sys.statement_performance_analyzer(&apos;snapshot&apos;, NULL, NULL); Query OK, 0 rows affected (0.02 sec)  mysql&gt; CALL sys.statement_performance_analyzer(&apos;save&apos;, &apos;mydb.tmp_digests_ini&apos;, NULL); Query OK, 0 rows affected (0.00 sec)  mysql&gt; DO SLEEP(60); Query OK, 0 rows affected (1 min 0.00 sec)  mysql&gt; CALL sys.statement_performance_analyzer(&apos;snapshot&apos;, NULL, NULL); Query OK, 0 rows affected (0.02 sec)  mysql&gt; CALL sys.statement_performance_analyzer(&apos;overall&apos;, NULL, &apos;with_runtimes_in_95th_percentile&apos;); +-----------------------------------------+ | Next Output                             | +-----------------------------------------+ | Queries with Runtime in 95th Percentile | +-----------------------------------------+ 1 row in set (0.05 sec)  ...  mysql&gt; CALL sys.statement_performance_analyzer(&apos;delta&apos;, &apos;mydb.tmp_digests_ini&apos;, &apos;with_runtimes_in_95th_percentile&apos;); +-----------------------------------------+ | Next Output                             | +-----------------------------------------+ | Queries with Runtime in 95th Percentile | +-----------------------------------------+ 1 row in set (0.03 sec)  ...   To create an overall report of the 95th percentile queries and the top 10 queries with full table scans:  mysql&gt; CALL sys.statement_performance_analyzer(&apos;snapshot&apos;, NULL, NULL); Query OK, 0 rows affected (0.01 sec)                                     mysql&gt; SET @sys.statement_performance_analyzer.limit = 10; Query OK, 0 rows affected (0.00 sec)            mysql&gt; CALL sys.statement_performance_analyzer(&apos;overall&apos;, NULL, &apos;with_runtimes_in_95th_percentile,with_full_table_scans&apos;); +-----------------------------------------+ | Next Output                             | +-----------------------------------------+ | Queries with Runtime in 95th Percentile | +-----------------------------------------+ 1 row in set (0.01 sec)  ...  +-------------------------------------+ | Next Output                         | +-------------------------------------+ | Top 10 Queries with Full Table Scan | +-------------------------------------+ 1 row in set (0.09 sec)  ...   Use a custom view showing the top 10 query sorted by total execution time refreshing the view every minute using the watch command in Linux.  mysql&gt; CREATE OR REPLACE VIEW mydb.my_statements AS -&gt; SELECT sys.format_statement(DIGEST_TEXT) AS query, -&gt;        SCHEMA_NAME AS db, -&gt;        COUNT_STAR AS exec_count, -&gt;        sys.format_time(SUM_TIMER_WAIT) AS total_latency, -&gt;        sys.format_time(AVG_TIMER_WAIT) AS avg_latency, -&gt;        ROUND(IFNULL(SUM_ROWS_SENT / NULLIF(COUNT_STAR, 0), 0)) AS rows_sent_avg, -&gt;        ROUND(IFNULL(SUM_ROWS_EXAMINED / NULLIF(COUNT_STAR, 0), 0)) AS rows_examined_avg, -&gt;        ROUND(IFNULL(SUM_ROWS_AFFECTED / NULLIF(COUNT_STAR, 0), 0)) AS rows_affected_avg, -&gt;        DIGEST AS digest -&gt;   FROM performance_schema.events_statements_summary_by_digest -&gt; ORDER BY SUM_TIMER_WAIT DESC; Query OK, 0 rows affected (0.01 sec)  mysql&gt; CALL sys.statement_performance_analyzer(&apos;create_table&apos;, &apos;mydb.digests_prev&apos;, NULL); Query OK, 0 rows affected (0.10 sec)  shell$ watch -n 60 &quot;mysql sys --table -e &quot; &gt; SET @sys.statement_performance_analyzer.view = &apos;mydb.my_statements&apos;; &gt; SET @sys.statement_performance_analyzer.limit = 10; &gt; CALL statement_performance_analyzer(&apos;snapshot&apos;, NULL, NULL); &gt; CALL statement_performance_analyzer(&apos;delta&apos;, &apos;mydb.digests_prev&apos;, &apos;custom&apos;); &gt; CALL statement_performance_analyzer(&apos;save&apos;, &apos;mydb.digests_prev&apos;, NULL); &gt; &quot;&quot;  Every 60.0s: mysql sys --table -e &quot;                                                                                                   ...  Mon Dec 22 10:58:51 2014  +----------------------------------+ | Next Output                      | +----------------------------------+ | Top 10 Queries Using Custom View | +----------------------------------+ +-------------------+-------+------------+---------------+-------------+---------------+-------------------+-------------------+----------------------------------+ | query             | db    | exec_count | total_latency | avg_latency | rows_sent_avg | rows_examined_avg | rows_affected_avg | digest                           | +-------------------+-------+------------+---------------+-------------+---------------+-------------------+-------------------+----------------------------------+ ... </Comment>
+ Which views to include:  * with_runtimes_in_95th_percentile  Based on the sys.statements_with_runtimes_in_95th_percentile view * analysis                          Based on the sys.statement_analysis view * with_errors_or_warnings           Based on the sys.statements_with_errors_or_warnings view * with_full_table_scans             Based on the sys.statements_with_full_table_scans view * with_sorting                      Based on the sys.statements_with_sorting view * with_temp_tables                  Based on the sys.statements_with_temp_tables view * custom                            Use a custom view. This view must be specified in @sys.statement_performance_analyzer.view to an existing view or a query  Default is to include all except &apos;custom&apos;.   Configuration Options  sys.statement_performance_analyzer.limit The maximum number of rows to include for the views that does not have a built-in limit (e.g. the 95th percentile view). If not set the limit is 100.  sys.statement_performance_analyzer.view Used together with the &apos;custom&apos; view. If the value contains a space, it is considered a query, otherwise it must be an existing view querying the performance_schema.events_statements_summary_by_digest table. There cannot be any limit clause including in the query or view definition if @sys.statement_performance_analyzer.limit &gt; 0. If specifying a view, use the same format as for in_table.  sys.debug Whether to provide debugging output. Default is &apos;OFF&apos;. Set to &apos;ON&apos; to include.   Example  To create a report with the queries in the 95th percentile since last truncate of performance_schema.events_statements_summary_by_digest and the delta for a 1 minute period:  1. Create a temporary table to store the initial snapshot. 2. Create the initial snapshot. 3. Save the initial snapshot in the temporary table. 4. Wait one minute. 5. Create a new snapshot. 6. Perform analyzis based on the new snapshot. 7. Perform analyzis based on the delta between the initial and new snapshots.  mysql&gt; CALL sys.statement_performance_analyzer(&apos;create_tmp&apos;, &apos;mydb.tmp_digests_ini&apos;, NULL); Query OK, 0 rows affected (0.08 sec)  mysql&gt; CALL sys.statement_performance_analyzer(&apos;snapshot&apos;, NULL, NULL); Query OK, 0 rows affected (0.02 sec)  mysql&gt; CALL sys.statement_performance_analyzer(&apos;save&apos;, &apos;mydb.tmp_digests_ini&apos;, NULL); Query OK, 0 rows affected (0.00 sec)  mysql&gt; DO SLEEP(60); Query OK, 0 rows affected (1 min 0.00 sec)  mysql&gt; CALL sys.statement_performance_analyzer(&apos;snapshot&apos;, NULL, NULL); Query OK, 0 rows affected (0.02 sec)  mysql&gt; CALL sys.statement_performance_analyzer(&apos;overall&apos;, NULL, &apos;with_runtimes_in_95th_percentile&apos;); +-----------------------------------------+ | Next Output                             | +-----------------------------------------+ | Queries with Runtime in 95th Percentile | +-----------------------------------------+ 1 row in set (0.05 sec)  ...  mysql&gt; CALL sys.statement_performance_analyzer(&apos;delta&apos;, &apos;mydb.tmp_digests_ini&apos;, &apos;with_runtimes_in_95th_percentile&apos;); +-----------------------------------------+ | Next Output                             | +-----------------------------------------+ | Queries with Runtime in 95th Percentile | +-----------------------------------------+ 1 row in set (0.03 sec)  ...   To create an overall report of the 95th percentile queries and the top 10 queries with full table scans:  mysql&gt; CALL sys.statement_performance_analyzer(&apos;snapshot&apos;, NULL, NULL); Query OK, 0 rows affected (0.01 sec)                                     mysql&gt; SET @sys.statement_performance_analyzer.limit = 10; Query OK, 0 rows affected (0.00 sec)            mysql&gt; CALL sys.statement_performance_analyzer(&apos;overall&apos;, NULL, &apos;with_runtimes_in_95th_percentile,with_full_table_scans&apos;); +-----------------------------------------+ | Next Output                             | +-----------------------------------------+ | Queries with Runtime in 95th Percentile | +-----------------------------------------+ 1 row in set (0.01 sec)  ...  +-------------------------------------+ | Next Output                         | +-------------------------------------+ | Top 10 Queries with Full Table Scan | +-------------------------------------+ 1 row in set (0.09 sec)  ...   Use a custom view showing the top 10 query sorted by total execution time refreshing the view every minute using the watch command in Linux.  mysql&gt; CREATE OR REPLACE VIEW mydb.my_statements AS -&gt; SELECT sys.format_statement(DIGEST_TEXT) AS query, -&gt;        SCHEMA_NAME AS db, -&gt;        COUNT_STAR AS exec_count, -&gt;        sys.format_time(SUM_TIMER_WAIT) AS total_latency, -&gt;        sys.format_time(AVG_TIMER_WAIT) AS avg_latency, -&gt;        ROUND(IFNULL(SUM_ROWS_SENT / NULLIF(COUNT_STAR, 0), 0)) AS rows_sent_avg, -&gt;        ROUND(IFNULL(SUM_ROWS_EXAMINED / NULLIF(COUNT_STAR, 0), 0)) AS rows_examined_avg, -&gt;        ROUND(IFNULL(SUM_ROWS_AFFECTED / NULLIF(COUNT_STAR, 0), 0)) AS rows_affected_avg, -&gt;        DIGEST AS digest -&gt;   FROM performance_schema.events_statements_summary_by_digest -&gt; ORDER BY SUM_TIMER_WAIT DESC; Query OK, 0 rows affected (0.01 sec)  mysql&gt; CALL sys.statement_performance_analyzer(&apos;create_table&apos;, &apos;mydb.digests_prev&apos;, NULL); Query OK, 0 rows affected (0.10 sec)  shell$ watch -n 60 &quot;mysql sys --table -e &quot; &gt; SET @sys.statement_performance_analyzer.view = &apos;mydb.my_statements&apos;; &gt; SET @sys.statement_performance_analyzer.limit = 10; &gt; CALL statement_performance_analyzer(&apos;snapshot&apos;, NULL, NULL); &gt; CALL statement_performance_analyzer(&apos;delta&apos;, &apos;mydb.digests_prev&apos;, &apos;custom&apos;); &gt; CALL statement_performance_analyzer(&apos;save&apos;, &apos;mydb.digests_prev&apos;, NULL); &gt; &quot;&quot;  Every 60.0s: mysql sys --table -e &quot;                                                                                                   ...  Mon Dec 22 10:58:51 2014  +----------------------------------+ | Next Output                      | +----------------------------------+ | Top 10 Queries Using Custom View | +----------------------------------+ +-------------------+-------+------------+---------------+-------------+---------------+-------------------+-------------------+----------------------------------+ | query             | db    | exec_count | total_latency | avg_latency | rows_sent_avg | rows_examined_avg | rows_affected_avg | digest                           | +-------------------+-------+------------+---------------+-------------+---------------+-------------------+-------------------+----------------------------------+ ...</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="592" parent="8" name="sys_get_config">
@@ -3547,7 +3547,7 @@
  IF (@sys.statement_truncate_len IS NULL) THEN
  SET @sys.statement_truncate_len = sys.sys_get_config(&apos;statement_truncate_len&apos;, 64);
  END IF;
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="593" parent="8" name="table_exists">
@@ -3632,7 +3632,7 @@
  |         |
  +---------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>procedure</RoutineKind>
     </routine>
     <routine id="594" parent="8" name="version_major">
@@ -3654,7 +3654,7 @@
  | 5.7.9-enterprise-commercial-advanced | 5                   |
  +--------------------------------------+---------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="595" parent="8" name="version_minor">
@@ -3676,7 +3676,7 @@
  | 5.7.9-enterprise-commercial-advanced | 7                   |
  +--------------------------------------+---------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <routine id="596" parent="8" name="version_patch">
@@ -3698,7 +3698,7 @@
  | 5.7.9-enterprise-commercial-advanced | 9                   |
  +--------------------------------------+---------------------+
  1 row in set (0.00 sec)
- </Comment>
+</Comment>
       <RoutineKind>function</RoutineKind>
     </routine>
     <table id="597" parent="9" name="city"/>

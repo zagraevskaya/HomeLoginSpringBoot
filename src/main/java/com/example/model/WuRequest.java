@@ -1,16 +1,15 @@
 package com.example.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "wu_request")
-public class WuRequest {
+public class WuRequest_old {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,31 +17,31 @@ public class WuRequest {
     private int id;
 
     @Column(name = "amount")
-    @NotNull(message = " *Необхідно ввести суму")
-    @Pattern(regexp = "^[0-9]*\\.[0-9]{2}", message=" *Необхідно ввести суму у форматі число з роздільником крапка (Наприклад - 15.00)")
-    private String amount;
-
+    private Double amount;
     @Column(name = "currency")
     @NotNull
     @NotNull
     @Pattern(regexp="^(?=\\s*\\S).*$", message=" *Необхідно вибрати валюту переказу")
     private String currency;
-    
     @Column(name = "amount_send")
     @NotNull(message = " *Необхідно ввести суму")
     @Pattern(regexp = "^[0-9]*\\.[0-9]{2}", message=" *Необхідно ввести суму у форматі число з роздільником крапка (Наприклад - 15.00)")
     private String amountSend;
-
     @Column(name = "cooment")
     private String cooment;
-
     @Column(name = "user_id")
     private Integer userId;
-
     @Column(name = "email")
     private String email;
+    private Integer userid;
+    private Timestamp dateRequest;
 
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
 
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -51,16 +50,18 @@ public class WuRequest {
         this.id = id;
     }
 
-
-    public String getAmount() {
+    @Basic
+    @Column(name = "amount", nullable = true, precision = 0)
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
-
+    @Basic
+    @Column(name = "currency", nullable = true, length = 3)
     public String getCurrency() {
         return currency;
     }
@@ -69,7 +70,8 @@ public class WuRequest {
         this.currency = currency;
     }
 
-
+    @Basic
+    @Column(name = "amount_send", nullable = false, length = 255)
     public String getAmountSend() {
         return amountSend;
     }
@@ -78,7 +80,8 @@ public class WuRequest {
         this.amountSend = amountSend;
     }
 
-
+    @Basic
+    @Column(name = "cooment", nullable = true, length = 255)
     public String getCooment() {
         return cooment;
     }
@@ -87,6 +90,8 @@ public class WuRequest {
         this.cooment = cooment;
     }
 
+    @Basic
+    @Column(name = "user_id", nullable = true)
     public Integer getUserId() {
         return userId;
     }
@@ -95,7 +100,8 @@ public class WuRequest {
         this.userId = userId;
     }
 
-
+    @Basic
+    @Column(name = "email", nullable = true, length = 255)
     public String getEmail() {
         return email;
     }
@@ -104,5 +110,45 @@ public class WuRequest {
         this.email = email;
     }
 
+    @Basic
+    @Column(name = "userid", nullable = true)
+    public Integer getUserid() {
+        return userid;
+    }
 
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    @Basic
+    @Column(name = "date_request", nullable = true)
+    public Timestamp getDateRequest() {
+        return dateRequest;
+    }
+
+    public void setDateRequest(Timestamp dateRequest) {
+        this.dateRequest = dateRequest;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WuRequest_old wuRequest = (WuRequest_old) o;
+        return id == wuRequest.id &&
+                Objects.equals(amount, wuRequest.amount) &&
+                Objects.equals(currency, wuRequest.currency) &&
+                Objects.equals(amountSend, wuRequest.amountSend) &&
+                Objects.equals(cooment, wuRequest.cooment) &&
+                Objects.equals(userId, wuRequest.userId) &&
+                Objects.equals(email, wuRequest.email) &&
+                Objects.equals(userid, wuRequest.userid) &&
+                Objects.equals(dateRequest, wuRequest.dateRequest);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, amount, currency, userid, email, dateRequest, amountSend, cooment, userId);
+    }
 }
