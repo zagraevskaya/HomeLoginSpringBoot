@@ -1,15 +1,12 @@
 package com.example.controller;
 
-import com.example.mail.CreateHTML;
 import com.example.mail.HtmlRequestLimit;
 import com.example.mail.SendMailIDoc;
 import com.example.model.AcWuDictUserTermDiv;
-import com.example.model.ParamUsersEntity;
 import com.example.model.WuRequest;
 import com.example.model.User;
 
 import com.example.service.*;
-import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,14 +19,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Map;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class RequestController {
-    @Autowired
-    private ParamService paramService;
+
     @Autowired
     private UserService userService;
     @Autowired
@@ -52,12 +53,23 @@ public class RequestController {
        
         //Получили парамеры юзера для процессов WU
         AcWuDictUserTermDiv acWuDictUser=acWuDictUserService.findByEmail(auth.getName());
-        modelAndView.addObject("terminal", acWuDictUser.getCodeTerminal());
-        modelAndView.addObject("subAgent", "ACCORDBANK,Branch#"+acWuDictUser.getTt());
-        modelAndView.addObject("codeOperator", acWuDictUser.getOperatorNo());
-        modelAndView.addObject("fio", acWuDictUser.getOperatorFio());
-        modelAndView.addObject("email", acWuDictUser.getOperatorEmail());
 
+        if (acWuDictUser!=null) {
+            modelAndView.addObject("terminal", acWuDictUser.getCodeTerminal());
+            modelAndView.addObject("subAgent", "ACCORDBANK,Branch#" + acWuDictUser.getTt());
+            modelAndView.addObject("codeOperator", acWuDictUser.getOperatorNo());
+            modelAndView.addObject("fio", acWuDictUser.getOperatorFio());
+            modelAndView.addObject("email", acWuDictUser.getOperatorEmail());
+        } else {
+
+            modelAndView.addObject("terminal", "");
+            modelAndView.addObject("subAgent", "ACCORDBANK,Branch#");
+            modelAndView.addObject("codeOperator", "");
+            modelAndView.addObject("fio", "");
+            modelAndView.addObject("email", "");
+
+
+        }
         //Cоздали новую заявку
         WuRequest wu_request=new WuRequest();
         modelAndView.addObject("wu_request",wu_request);
@@ -69,6 +81,13 @@ public class RequestController {
     @RequestMapping(value = "/admin/processRequestLimit", method = RequestMethod.POST)
     public ModelAndView createNewRequestLimit(@Valid @ModelAttribute("wu_request") WuRequest wuRequest, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
+        //Получили дату
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        Calendar currentDate=Calendar.getInstance();
+        Date date = new Date();
+
+
+
         //Получили юзера
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
        
@@ -90,6 +109,7 @@ public class RequestController {
             User user = userService.findUserByEmail(auth.getName());
             wuRequest.setEmail(auth.getName());
             wuRequest.setUserId(user.getId());
+            wuRequest.setDateRequest(date);
             wuRequestService.saveWuRequest(wuRequest);
             modelAndView.addObject("wu_request", new WuRequest());
             //текст письма в формате HTML
@@ -116,7 +136,10 @@ public class RequestController {
 
        //Получили парамеры юзера для процессов WU
         AcWuDictUserTermDiv acWuDictUser=acWuDictUserService.findByEmail(auth.getName());
-        modelAndView.addObject("TT", acWuDictUser.getTt());
+        if (acWuDictUser!=null) {
+            modelAndView.addObject("TT", acWuDictUser.getTt());
+        }
+
         WuRequest wuRequest=new WuRequest();
         modelAndView.addObject("wurequest",wuRequest);
         modelAndView.addObject("userName", " Персональні данні :  " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
@@ -146,4 +169,31 @@ public class RequestController {
 
         return modelAndView;
     }
+
+
+    //История заявок
+    @RequestMapping(value="/admin/history", method = RequestMethod.GET)
+    public ModelAndView history(){
+
+        //Создали модель
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin/history");
+
+        //Получили юзера
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        //Получили парамеры юзера для процессов WU
+        List<WuRequest> acWuRequestList=wuRequestService.queryByEmail(auth.getName());
+
+        if (acWuRequestList.size()>0) {
+            modelAndView.addObject("listWuRequest", acWuRequestList);
+            System.out.println("!!!!!"+acWuRequestList.size());
+        } else  {
+            modelAndView.addObject("listWuRequest", null);
+        }
+
+        return modelAndView;
+    }
+
+
 }

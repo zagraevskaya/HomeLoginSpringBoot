@@ -1,163 +1,105 @@
 package com.example.controller;
 
-import com.example.mail.CreateHTML;
-import com.example.mail.HtmlRequestLimit;
-import com.example.mail.SendMailIDoc;
-import com.example.model.AcWuDictUserTermDiv;
-import com.example.model.ParamUsersEntity;
-import com.example.model.WuRequest;
-import com.example.model.User;
+import com.example.service.AcWuDictUserService;
+import com.example.service.ListWuService;
+import com.example.service.UserService;
+import com.example.service.WuRequestService;
+import com.example.file.MyUploadForm;
 
-import com.example.service.*;
-import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-
-
-import javax.validation.Valid;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
+import javax.servlet.http.HttpServletRequest;
+
+
+import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-public class RequestController {
-    @Autowired
-    private ParamService paramService;
+public class GuaranteeController {
+
     @Autowired
     private UserService userService;
-    @Autowired
-    private WuRequestService wuRequestService;
-    @Autowired
-    private AcWuDictUserService acWuDictUserService;
 
 
 
-    //Заявка на изменение лимита ПОЛУЧЕНИЕ ДАННЫХ
-    @RequestMapping(value="/admin/processRequestLimit", method = RequestMethod.GET)
-    public ModelAndView processRequestLimit(){
-        
-        //Создали модель
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin/processRequestLimit");
 
-        //Получили юзера
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-       
-        //Получили парамеры юзера для процессов WU
-        AcWuDictUserTermDiv acWuDictUser=acWuDictUserService.findByEmail(auth.getName());
+    //Заявка на гарантию ПОЛУЧЕНИЕ ДАННЫХ
+    @RequestMapping(value="/admin/requestGuarantee", method = RequestMethod.GET)
+    public String requestGuarantee(Model model){
+        MyUploadForm myUploadForm = new MyUploadForm();
+        model.addAttribute("myUploadForm", myUploadForm);
 
-        if (acWuDictUser!=null) {
-            modelAndView.addObject("terminal", acWuDictUser.getCodeTerminal());
-            modelAndView.addObject("subAgent", "ACCORDBANK,Branch#" + acWuDictUser.getTt());
-            modelAndView.addObject("codeOperator", acWuDictUser.getOperatorNo());
-            modelAndView.addObject("fio", acWuDictUser.getOperatorFio());
-            modelAndView.addObject("email", acWuDictUser.getOperatorEmail());
-        } else {
+        return "requestGuarantee";
 
-            modelAndView.addObject("terminal", "");
-            modelAndView.addObject("subAgent", "ACCORDBANK,Branch#");
-            modelAndView.addObject("codeOperator", "");
-            modelAndView.addObject("fio", "");
-            modelAndView.addObject("email", "");
-
-
-        }
-        //Cоздали новую заявку
-        WuRequest wu_request=new WuRequest();
-        modelAndView.addObject("wu_request",wu_request);
-        return modelAndView;
     }
 
 
-    //Заявка на изменение лимита ОТПРАВКА ДАННЫХ
-    @RequestMapping(value = "/admin/processRequestLimit", method = RequestMethod.POST)
-    public ModelAndView createNewRequestLimit(@Valid @ModelAttribute("wu_request") WuRequest wuRequest, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
-        //Получили юзера
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-       
-        //Получили парамеры юзера для процессов WU
-        AcWuDictUserTermDiv acWuDictUser=acWuDictUserService.findByEmail(auth.getName());
-        modelAndView.addObject("terminal", acWuDictUser.getCodeTerminal());
-        modelAndView.addObject("subAgent", "ACCORDBANK,Branch#"+acWuDictUser.getTt());
-        modelAndView.addObject("codeOperator", acWuDictUser.getOperatorNo());
-        modelAndView.addObject("fio", acWuDictUser.getOperatorFio());
-        modelAndView.addObject("email", acWuDictUser.getOperatorEmail());
-
-        //Если форма не прошла валидацию   
-        if (bindingResult.hasErrors()) {
-            modelAndView.addObject("wu_request",wuRequest);
-            modelAndView.setViewName("admin/processRequestLimit");
-        } 
-       //при успешной валидации формируем письмо 
-        else {
-            User user = userService.findUserByEmail(auth.getName());
-            wuRequest.setEmail(auth.getName());
-            wuRequest.setUserId(user.getId());
-            wuRequestService.saveWuRequest(wuRequest);
-            modelAndView.addObject("wu_request", new WuRequest());
-            //текст письма в формате HTML
-            String textEmail=new HtmlRequestLimit().creatHtmlBodyMail(wuRequest, acWuDictUser);
-            //отправка письма по адресу
-            new SendMailIDoc("zagraevskaya@accordbank.com.ua").sendEmail(textEmail);
-            
-            modelAndView.setViewName("admin/sucessMessage");
-        }
-       return modelAndView;
+    //Заявка на ганатию ОТПРАВКА ДАННЫХ
+    @RequestMapping(value = "/admin/requestGuarantee", method = RequestMethod.POST)
+    public String requestGuaranteePOST(HttpServletRequest request, //
+                                              Model model, //
+                                              @ModelAttribute("myUploadForm") MyUploadForm myUploadForm) {
+        return this.doUpload(request, model, myUploadForm);
     }
 
+    private String doUpload(HttpServletRequest request, Model model, //
+                            MyUploadForm myUploadForm) {
 
-    @RequestMapping(value="/admin/processRequestChangePass", method = RequestMethod.GET)
-    public ModelAndView processRequestChangePass(){
-        //Создали модель
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin/processRequestChangePass");
+        String description = myUploadForm.getDescription();
+        System.out.println("Description: " + description);
 
-        //Получили юзера
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-        modelAndView.addObject("user", user);
+        // Root Directory.
+        String uploadRootPath = request.getServletContext().getRealPath("upload");
+        System.out.println("uploadRootPath=" + uploadRootPath);
 
-       //Получили парамеры юзера для процессов WU
-        AcWuDictUserTermDiv acWuDictUser=acWuDictUserService.findByEmail(auth.getName());
-        if (acWuDictUser!=null) {
-            modelAndView.addObject("TT", acWuDictUser.getTt());
+        File uploadRootDir = new File(uploadRootPath);
+        // Create directory if it not exists.
+        if (!uploadRootDir.exists()) {
+            uploadRootDir.mkdirs();
         }
+        MultipartFile[] fileDatas = myUploadForm.getFileDatas();
+        //
+        List<File> uploadedFiles = new ArrayList<File>();
+        List<String> failedFiles = new ArrayList<String>();
 
-        WuRequest wuRequest=new WuRequest();
-        modelAndView.addObject("wurequest",wuRequest);
-        modelAndView.addObject("userName", " Персональні данні :  " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+        for (MultipartFile fileData : fileDatas) {
 
+            // Client File Name
+            String name = fileData.getOriginalFilename();
+            System.out.println("Client File Name = " + name);
 
-        return modelAndView;
+            if (name != null && name.length() > 0) {
+                try {
+                    // Create the file at server
+                    File serverFile = new File(uploadRootDir.getAbsolutePath() + File.separator + name);
+
+                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+                    stream.write(fileData.getBytes());
+                    stream.close();
+                    //
+                    uploadedFiles.add(serverFile);
+                    System.out.println("Write file: " + serverFile);
+                } catch (Exception e) {
+                    System.out.println("Error Write file: " + name);
+                    failedFiles.add(name);
+                }
+            }
+        }
+        model.addAttribute("description", description);
+        model.addAttribute("uploadedFiles", uploadedFiles);
+        model.addAttribute("failedFiles", failedFiles);
+        return "uploadResult";
     }
 
-
-    @RequestMapping(value = "/admin/processRequestChangePass", method = RequestMethod.POST)
-    public ModelAndView createNewRequestChagePass(@Valid WuRequest wuRequest, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
-
-        if (bindingResult.hasErrors()) {
-            
-            modelAndView.setViewName("/admin/processRequestChangePass");
-        } else {
-            wuRequest.setEmail("test@gmail.com");
-            wuRequest.setUserId(111);
-            
-            wuRequestService.saveWuRequest(wuRequest);
-            modelAndView.addObject("successMessage", "Заявка отправлена успешо");
-            modelAndView.addObject("wuRequest", new WuRequest());
-            modelAndView.setViewName("admin/processRequestChangePass");
-
-        }
-
-        return modelAndView;
-    }
 }

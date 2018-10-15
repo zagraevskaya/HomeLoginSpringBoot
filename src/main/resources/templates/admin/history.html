@@ -10,11 +10,26 @@
 <div th:replace="fragments/header :: header"/>
 
 <div class="container">
-
-	<form th:action="@{/logout}" method="get">
-			<button class="btn btn-md btn-danger btn-block" name="registration"
-				type="Submit">Logout</button>
-		</form>
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th scope="col">Сума</th>
+			<th scope="col">Валюта</th>
+			<th scope="col">Відправлено по терміналу</th>
+			<th scope="col">Дата</th>
+			<th scope="col">Коментар</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each ="person : ${listWuRequest}">
+			<td th:utext="${person.amount}">...</td>
+			<td th:utext="${person.currency}">...</td>
+			<td th:utext="${person.amountSend}">...</td>
+			<td th:utext="${person.dateRequest}">...</td>
+			<td th:utext="${person.cooment}">...</td>
+		</tr>
+		</tbody>
+	</table>
 
 
 	<div class="panel-group" style="margin-top:40px">
@@ -22,7 +37,7 @@
 			  <div class="panel-heading">
 					
 		           </div>
-                            <p class="admin-message-text text-center">Запит відправлено</p>
+				<p class="admin-message-text text-center">Запит відправлено</p>
 			</div>
 		</div>
 		

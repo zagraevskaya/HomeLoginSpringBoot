@@ -51,7 +51,7 @@
                 
               
                <div class="form-group">
-                    <label for="amountS">Сума</label>
+                    <label for="amount">Сума</label>
                     <input type="text" th:field="*{amount}" class="form-control" aria-describedby="amountHelp" placeholder="0.00">
                     <label th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"
 								class="validation-message"></label>  

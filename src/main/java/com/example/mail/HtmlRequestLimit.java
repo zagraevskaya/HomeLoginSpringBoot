@@ -7,7 +7,6 @@ package com.example.mail;
 
 import com.example.model.AcWuDictUserTermDiv;
 import com.example.model.WuRequest;
-import java.util.Map;
 
 /**
  *
@@ -16,7 +15,7 @@ import java.util.Map;
 public class HtmlRequestLimit {
     
  //Сформировали параметры заявки в виде HTML таблицы
-    public String creatHtmlBodyMail(WuRequest wuRequest,AcWuDictUserTermDiv acWuDictUser){
+    public String creatHtmlBodyMail(WuRequest wuRequest, AcWuDictUserTermDiv acWuDictUser){
       StringBuilder stb=new StringBuilder();
      
     //формируем параметры в виде таблицы для письма 

@@ -9,7 +9,7 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "wu_request")
-public class WuRequest_old {
+public class WuRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,7 +17,8 @@ public class WuRequest_old {
     private int id;
 
     @Column(name = "amount")
-    private Double amount;
+    private String amount;
+
     @Column(name = "currency")
     @NotNull
     @NotNull
@@ -33,15 +34,14 @@ public class WuRequest_old {
     private Integer userId;
     @Column(name = "email")
     private String email;
+
     private Integer userid;
-    private Timestamp dateRequest;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date_request", nullable = true, insertable = true, updatable = true)
+    private  java.util.Date dateRequest;
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
 
-    @Id
-    @Column(name = "id", nullable = false)
+
     public int getId() {
         return id;
     }
@@ -52,11 +52,11 @@ public class WuRequest_old {
 
     @Basic
     @Column(name = "amount", nullable = true, precision = 0)
-    public Double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -120,13 +120,13 @@ public class WuRequest_old {
         this.userid = userid;
     }
 
-    @Basic
-    @Column(name = "date_request", nullable = true)
-    public Timestamp getDateRequest() {
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date_request", nullable = true, insertable = true, updatable = true)
+    public  java.util.Date getDateRequest() {
         return dateRequest;
     }
 
-    public void setDateRequest(Timestamp dateRequest) {
+    public void setDateRequest(java.util.Date dateRequest) {
         this.dateRequest = dateRequest;
     }
 
@@ -134,7 +134,7 @@ public class WuRequest_old {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        WuRequest_old wuRequest = (WuRequest_old) o;
+        WuRequest wuRequest = (WuRequest) o;
         return id == wuRequest.id &&
                 Objects.equals(amount, wuRequest.amount) &&
                 Objects.equals(currency, wuRequest.currency) &&
