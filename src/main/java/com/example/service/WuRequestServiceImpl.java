@@ -10,6 +10,8 @@ public interface WuRequestServiceImpl {
 
     public List<WuRequest> findByEmail(String email);
     public void saveWuRequest(WuRequest wuRequest);
+    public WuRequest findByWuId(Integer id);
+
 
 
 }

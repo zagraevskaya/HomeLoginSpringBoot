@@ -15,10 +15,8 @@ public class WuRequest {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-
     @Column(name = "amount")
     private String amount;
-
     @Column(name = "currency")
     @NotNull
     @NotNull
@@ -30,18 +28,29 @@ public class WuRequest {
     private String amountSend;
     @Column(name = "cooment")
     private String cooment;
-    @Column(name = "user_id")
-    private Integer userId;
+
     @Column(name = "email")
     private String email;
 
-    private Integer userid;
+
     @Temporal(TemporalType.DATE)
     @Column(name = "date_request", nullable = true, insertable = true, updatable = true)
     private  java.util.Date dateRequest;
 
 
 
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",nullable=false, updatable=false)
+    private User primaryUser;
+
+
+    public User getPrimaryUser() {
+        return primaryUser;
+    }
+
+    public void setPrimaryUser(User primaryUser) {
+        this.primaryUser = primaryUser;
+    }
     public int getId() {
         return id;
     }
@@ -90,7 +99,7 @@ public class WuRequest {
         this.cooment = cooment;
     }
 
-    @Basic
+   /* @Basic
     @Column(name = "user_id", nullable = true)
     public Integer getUserId() {
         return userId;
@@ -98,8 +107,7 @@ public class WuRequest {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
+    }*/
     @Basic
     @Column(name = "email", nullable = true, length = 255)
     public String getEmail() {
@@ -110,7 +118,7 @@ public class WuRequest {
         this.email = email;
     }
 
-    @Basic
+   /* @Basic
     @Column(name = "userid", nullable = true)
     public Integer getUserid() {
         return userid;
@@ -119,7 +127,7 @@ public class WuRequest {
     public void setUserid(Integer userid) {
         this.userid = userid;
     }
-
+*/
     @Temporal(TemporalType.DATE)
     @Column(name = "date_request", nullable = true, insertable = true, updatable = true)
     public  java.util.Date getDateRequest() {
@@ -130,7 +138,7 @@ public class WuRequest {
         this.dateRequest = dateRequest;
     }
 
-    @Override
+   /* @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -142,13 +150,14 @@ public class WuRequest {
                 Objects.equals(cooment, wuRequest.cooment) &&
                 Objects.equals(userId, wuRequest.userId) &&
                 Objects.equals(email, wuRequest.email) &&
-                Objects.equals(userid, wuRequest.userid) &&
+
                 Objects.equals(dateRequest, wuRequest.dateRequest);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, amount, currency, userid, email, dateRequest, amountSend, cooment, userId);
+        return Objects.hash(id, amount, currency,  email, dateRequest, amountSend, cooment, userId);
     }
+*/
 }

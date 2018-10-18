@@ -30,10 +30,12 @@ public class WuRequestService implements WuRequestServiceImpl {
 
 
     public List<WuRequest> queryByEmail(String email) {
-
         return wuRequestRepository.findByNameOrder(email);
     }
 
+    public WuRequest findByWuId(Integer id){
+        return wuRequestRepository.findByWuId(id);
+    }
 
 
 }

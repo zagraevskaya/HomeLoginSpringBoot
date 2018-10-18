@@ -11,16 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
 
 import javax.validation.Valid;
-
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -43,14 +41,14 @@ public class RequestController {
     //Заявка на изменение лимита ПОЛУЧЕНИЕ ДАННЫХ
     @RequestMapping(value="/admin/processRequestLimit", method = RequestMethod.GET)
     public ModelAndView processRequestLimit(){
-        
+
         //Создали модель
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin/processRequestLimit");
 
         //Получили юзера
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-       
+
         //Получили парамеры юзера для процессов WU
         AcWuDictUserTermDiv acWuDictUser=acWuDictUserService.findByEmail(auth.getName());
 
@@ -86,11 +84,9 @@ public class RequestController {
         Calendar currentDate=Calendar.getInstance();
         Date date = new Date();
 
-
-
         //Получили юзера
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-       
+
         //Получили парамеры юзера для процессов WU
         AcWuDictUserTermDiv acWuDictUser=acWuDictUserService.findByEmail(auth.getName());
         modelAndView.addObject("terminal", acWuDictUser.getCodeTerminal());
@@ -99,16 +95,17 @@ public class RequestController {
         modelAndView.addObject("fio", acWuDictUser.getOperatorFio());
         modelAndView.addObject("email", acWuDictUser.getOperatorEmail());
 
-        //Если форма не прошла валидацию   
+        //Если форма не прошла валидацию
         if (bindingResult.hasErrors()) {
             modelAndView.addObject("wu_request",wuRequest);
             modelAndView.setViewName("admin/processRequestLimit");
-        } 
-       //при успешной валидации формируем письмо 
+        }
+        //при успешной валидации формируем письмо
         else {
             User user = userService.findUserByEmail(auth.getName());
             wuRequest.setEmail(auth.getName());
-            wuRequest.setUserId(user.getId());
+           // wuRequest.setUserId(user.getId());
+            wuRequest.setPrimaryUser(user);
             wuRequest.setDateRequest(date);
             wuRequestService.saveWuRequest(wuRequest);
             modelAndView.addObject("wu_request", new WuRequest());
@@ -116,10 +113,10 @@ public class RequestController {
             String textEmail=new HtmlRequestLimit().creatHtmlBodyMail(wuRequest, acWuDictUser);
             //отправка письма по адресу
             new SendMailIDoc("zagraevskaya@accordbank.com.ua").sendEmail(textEmail);
-            
+
             modelAndView.setViewName("admin/sucessMessage");
         }
-       return modelAndView;
+        return modelAndView;
     }
 
 
@@ -134,7 +131,7 @@ public class RequestController {
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("user", user);
 
-       //Получили парамеры юзера для процессов WU
+        //Получили парамеры юзера для процессов WU
         AcWuDictUserTermDiv acWuDictUser=acWuDictUserService.findByEmail(auth.getName());
         if (acWuDictUser!=null) {
             modelAndView.addObject("TT", acWuDictUser.getTt());
@@ -154,12 +151,12 @@ public class RequestController {
         ModelAndView modelAndView = new ModelAndView();
 
         if (bindingResult.hasErrors()) {
-            
+
             modelAndView.setViewName("/admin/processRequestChangePass");
         } else {
             wuRequest.setEmail("test@gmail.com");
-            wuRequest.setUserId(111);
-            
+           // wuRequest.setUserId(111);
+
             wuRequestService.saveWuRequest(wuRequest);
             modelAndView.addObject("successMessage", "Заявка отправлена успешо");
             modelAndView.addObject("wuRequest", new WuRequest());
@@ -185,9 +182,11 @@ public class RequestController {
         //Получили парамеры юзера для процессов WU
         List<WuRequest> acWuRequestList=wuRequestService.queryByEmail(auth.getName());
 
+        //List<WuRequest> acWuRequestList=wuRequestService.findAllWithUserQuery();
+
         if (acWuRequestList.size()>0) {
             modelAndView.addObject("listWuRequest", acWuRequestList);
-            System.out.println("!!!!!"+acWuRequestList.size());
+
         } else  {
             modelAndView.addObject("listWuRequest", null);
         }
@@ -196,4 +195,41 @@ public class RequestController {
     }
 
 
+
+
+
+    //Просмотр Заявки на изменение лимита
+    @RequestMapping(value="/admin/processRequestLimit/{id}", method = RequestMethod.GET)
+    public ModelAndView processRequestLimitUpdate(@PathVariable Integer id,Model uiModel){
+         System.out.println("!!!!!!!!!!!!!!!!!!");
+        //Создали модель
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin/processRequestLimit");
+        WuRequest wuRequest=wuRequestService.findByWuId(id);
+        modelAndView.addObject("wu_request",wuRequest);
+        return modelAndView;
+    }
+
+
+    @GetMapping("/admin/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        System.out.println("!!!!!!!!!!!!!!!!!!");
+        ModelAndView modelAndView = new ModelAndView();
+
+       // WuRequest wuRequest = wuRequestService.findByWuId(id);
+
+        //model.addAttribute("WuRequest", wuRequest);
+        return "admin/processRequestLimit";
+    }
+/*
+
+    @RequestMapping(value="/admin/edit/{id}", method = RequestMethod.GET)
+    public ModelAndView edit(@PathVariable Integer id, Model model) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        WuRequest wuRequest = wuRequestService.findByWuId(id);
+        model.addAttribute("WuRequest", wuRequest);
+        return modelAndView;
+    }
+*/
 }

@@ -2,17 +2,10 @@ package com.example.model;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+import jdk.nashorn.internal.objects.annotations.Setter;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -46,6 +39,17 @@ public class User {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
+
+	public Set<WuRequest> getAllWuRequests() {
+		return allWuRequests;
+	}
+
+	public void setAllWuRequests(Set<WuRequest> allWuRequests) {
+		this.allWuRequests = allWuRequests;
+	}
+
+	@OneToMany(mappedBy = "primaryUser", fetch = FetchType.EAGER)
+	private Set<WuRequest> allWuRequests;
 
 	public int getId() {
 		return id;
