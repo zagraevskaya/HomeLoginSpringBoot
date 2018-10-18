@@ -1,70 +1,58 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<div th:replace="fragments/header :: header-css"/>
+    <div th:replace="fragments/header :: header-css"/>
 </head>
 
 <body>
 <div th:replace="fragments/header :: header"/>
 
 <div class="container">
-	<table class="table table-striped">
-		<thead>
-		<tr>
-			<th scope="col">Номер заявки</th>
-			<th scope="col">Сума</th>
-			<th scope="col">Валюта</th>
-			<th scope="col">Відправлено по терміналу</th>
-			<th scope="col">Дата</th>
-			<th scope="col">Коментар</th>
-			<th scope="col">ПІБ</th>
-            <th scope="col">Cтатус</th>
-		</tr>
-		</thead>
-		<tbody>
-
-        <tr th:each="wuRequest : ${listWuRequest}">
-            <td th:text="${wuRequest.id}" style="text-align: center">...</td>
-            <td th:text="${wuRequest.amount}">...</td>
-            <td th:text="${wuRequest.currency}">...</td>
-            <td th:text="${wuRequest.amount_send}">...</td>
-
-            <td th:text="${#dates.format(wuRequest.dateRequest, 'dd.MM.yyyy HH:mm')}" style="text-align: center">Date</td>
-            <td th:text="${wuRequest.cooment}">...</td>
-            <td th:text="${wuRequest.primaryUser.lastName}">...</td>
-            <td style="text-align: center">
-                <i th:if="${wuRequest.state} == true" class="fa fa-plus-square-o" style="font-size:20px;color:#337ab7"></i>
-                <i th:if="${wuRequest.state} == false" class="fa fa-minus-square-o" style="font-size:20px;color:#337ab7"></i>
-            </td>
-            <td style="text-align: center"><a th:href="@{'/admin/processRequestLimit/{id}'(id=${wuRequest.id})}"><i class="fa fa-edit" style="font-size:20px"></i></a></td>
-            <td style="text-align: center"><a th:href="@{'/admin/delete/{id}'(id=${wuRequest.id})}"><i class="fa fa-trash" style="font-size:20px"></i></a></td>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Номер заявки</th>
+            <th scope="col">Сума</th>
+            <th scope="col">Валюта</th>
+            <th scope="col">Відправлено по терміналу</th>
+            <th scope="col">Дата</th>
+            <th scope="col">Коментар</th>
+            <th scope="col">ПІБ</th>
         </tr>
+        </thead>
+        <tbody>
 
-		<tr th:each ="person : ${listWuRequest}">
-			<td ><a th:href="@{'/admin/processRequestLimit/{id}'(id = ${person.id})}">sss</a></td>-
+
+        <tr th:each ="person : ${listWuRequest}">
+            <td ><a th:href="@{'/admin/processRequestLimit/{id}'(id = ${person.id})}"><span th:utext="${person.id}">...</span></a></td>
 
             <td th:utext="${person.amount}">...</td>
-			<td th:utext="${person.currency}">...</td>
-			<td th:utext="${person.amountSend}">...</td>
-			<td th:utext="${person.dateRequest}">...</td>
-			<td th:utext="${person.cooment}">...</td>
-			<td th:utext="${person.primaryUser.lastName}">...</td>
-		</tr>
-		</tbody>
-	</table>
+            <td th:utext="${person.currency}">...</td>
+            <td th:utext="${person.amountSend}">...</td>
+            <td th:utext="${person.dateRequest}">...</td>
+            <td th:utext="${person.cooment}">...</td>
+            <td th:utext="${person.primaryUser.lastName}">...</td>
+
+            <td style="text-align: center"><a th:href="@{'/admin/processRequestLimit/{id}'(id=${person.id})}"><i class="fa fa-edit" style="font-size:20px"></i></a></td>
+            <td style="text-align: center"><a th:href="@{'/admin/delete/{id}'(id=${person.id})}"><i class="fa fa-trash" style="font-size:20px"></i></a></td>
 
 
-	<div class="panel-group" style="margin-top:40px">
-			<div class="panel panel-primary">
-			  <div class="panel-heading">
-					
-		           </div>
-				<p class="admin-message-text text-center">Запит відправлено</p>
-			</div>
-		</div>
-		
-	</div>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <div class="panel-group" style="margin-top:40px">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+
+            </div>
+            <p class="admin-message-text text-center">Запит вidідправлено</p>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

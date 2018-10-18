@@ -99,15 +99,14 @@ public class WuRequest {
         this.cooment = cooment;
     }
 
-   /* @Basic
-    @Column(name = "user_id", nullable = true)
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }*/
+    /* @Basic
+     @Column(name = "user_id", nullable = true)
+     public Integer getUserId() {
+         return userId;
+     }
+     public void setUserId(Integer userId) {
+         this.userId = userId;
+     }*/
     @Basic
     @Column(name = "email", nullable = true, length = 255)
     public String getEmail() {
@@ -118,16 +117,15 @@ public class WuRequest {
         this.email = email;
     }
 
-   /* @Basic
-    @Column(name = "userid", nullable = true)
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
-*/
+    /* @Basic
+     @Column(name = "userid", nullable = true)
+     public Integer getUserid() {
+         return userid;
+     }
+     public void setUserid(Integer userid) {
+         this.userid = userid;
+     }
+ */
     @Temporal(TemporalType.DATE)
     @Column(name = "date_request", nullable = true, insertable = true, updatable = true)
     public  java.util.Date getDateRequest() {
@@ -150,13 +148,10 @@ public class WuRequest {
                 Objects.equals(cooment, wuRequest.cooment) &&
                 Objects.equals(userId, wuRequest.userId) &&
                 Objects.equals(email, wuRequest.email) &&
-
                 Objects.equals(dateRequest, wuRequest.dateRequest);
     }
-
     @Override
     public int hashCode() {
-
         return Objects.hash(id, amount, currency,  email, dateRequest, amountSend, cooment, userId);
     }
 */

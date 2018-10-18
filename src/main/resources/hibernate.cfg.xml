@@ -9,8 +9,9 @@
     <mapping class="com.example.model.WuRequest"/>
     <mapping class="com.example.model.User"/>
     <mapping class="com.example.model.Role"/>
+      <mapping class="com.example.model.entWuRequest"/>
 
-    <!-- <property name="connection.username"/> -->
+      <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
     <!-- DB schema will be updated if needed -->
