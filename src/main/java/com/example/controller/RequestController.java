@@ -22,6 +22,7 @@ import javax.validation.Valid;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +37,7 @@ public class RequestController {
     @Autowired
     private AcWuDictUserService acWuDictUserService;
 
+    private String sortDateMethod = "ASC";
 
 
     //Заявка на изменение лимита ПОЛУЧЕНИЕ ДАННЫХ
@@ -168,68 +170,4 @@ public class RequestController {
     }
 
 
-    //История заявок
-    @RequestMapping(value="/admin/history", method = RequestMethod.GET)
-    public ModelAndView history(){
-
-        //Создали модель
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin/history");
-
-        //Получили юзера
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        //Получили парамеры юзера для процессов WU
-        List<WuRequest> acWuRequestList=wuRequestService.queryByEmail(auth.getName());
-
-        //List<WuRequest> acWuRequestList=wuRequestService.findAllWithUserQuery();
-
-        if (acWuRequestList.size()>0) {
-            modelAndView.addObject("listWuRequest", acWuRequestList);
-
-        } else  {
-            modelAndView.addObject("listWuRequest", null);
-        }
-
-        return modelAndView;
-    }
-
-
-
-
-
-    //Просмотр Заявки на изменение лимита
-    @RequestMapping(value="/admin/processRequestLimit/{id}", method = RequestMethod.GET)
-    public ModelAndView processRequestLimitUpdate(@PathVariable Integer id,Model uiModel){
-         System.out.println("!!!!!!!!!!!!!!!!!!");
-        //Создали модель
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin/processRequestLimit");
-        WuRequest wuRequest=wuRequestService.findByWuId(id);
-        modelAndView.addObject("wu_request",wuRequest);
-        return modelAndView;
-    }
-
-
-    @GetMapping("/admin/edit/{id}")
-    public String edit(@PathVariable Integer id, Model model) {
-        System.out.println("!!!!!!!!!!!!!!!!!!");
-        ModelAndView modelAndView = new ModelAndView();
-
-       // WuRequest wuRequest = wuRequestService.findByWuId(id);
-
-        //model.addAttribute("WuRequest", wuRequest);
-        return "admin/processRequestLimit";
-    }
-/*
-
-    @RequestMapping(value="/admin/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView edit(@PathVariable Integer id, Model model) {
-
-        ModelAndView modelAndView = new ModelAndView();
-        WuRequest wuRequest = wuRequestService.findByWuId(id);
-        model.addAttribute("WuRequest", wuRequest);
-        return modelAndView;
-    }
-*/
 }

@@ -2,7 +2,9 @@ package com.example.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 import javax.validation.constraints.NotNull;
 
 import javax.validation.constraints.Pattern;
@@ -42,6 +44,20 @@ public class WuRequest {
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id",nullable=false, updatable=false)
     private User primaryUser;
+
+
+
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "state_id",nullable=false, updatable=false)
+     private DicState primaryState;
+
+    public DicState getPrimaryState() {
+        return primaryState;
+    }
+
+    public void setPrimaryState(DicState primaryState) {
+        this.primaryState = primaryState;
+    }
 
 
     public User getPrimaryUser() {
