@@ -37,8 +37,9 @@ public interface WuRequestRepository extends JpaRepository<WuRequest, Long> {
     );
 
 
-    @Query("SELECT t FROM WuRequest t WHERE " +
-            " t.primaryState > :ready")
+    @Query("SELECT t FROM WuRequest t " +
+           " WHERE t.primaryState.id =  :ready"
+    )
     Page<WuRequest> findByPrimaryState(
             @Param("ready") int ready,
             Pageable pageRequest

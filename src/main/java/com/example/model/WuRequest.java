@@ -34,17 +34,14 @@ public class WuRequest {
     @Column(name = "email")
     private String email;
 
-
     @Temporal(TemporalType.DATE)
     @Column(name = "date_request", nullable = true, insertable = true, updatable = true)
     private  java.util.Date dateRequest;
 
 
-
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id",nullable=false, updatable=false)
     private User primaryUser;
-
 
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)

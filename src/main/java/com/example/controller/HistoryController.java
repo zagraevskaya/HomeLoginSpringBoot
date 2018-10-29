@@ -46,7 +46,7 @@ public class HistoryController {
                                 @RequestParam(required = false, defaultValue = "ask") String order,
                                 @RequestParam(required = false, defaultValue = "") String term, // запрос на поиск
                                 @RequestParam(required = false, defaultValue = "0") int afterYear, // минимальный год выхода книги в печать
-                                @RequestParam(required = false, defaultValue = "") int ready, Model uiModel) {
+                                @RequestParam(required = false, defaultValue = "1") int ready, Model uiModel) {
 
         //Создали модель
         ModelAndView modelAndView = new ModelAndView();
@@ -75,6 +75,7 @@ public class HistoryController {
 
        // Page<WuRequest> listWuRequest = wuRequestService.listWuRequest(pageRequest);
 
+        System.out.println("!!!!!"+ready);
         Page<WuRequest> listWuRequest = wuRequestService.findByPrimaryState(ready,pageRequest);
         /*
         Page<WuRequest> listWuRequest;
